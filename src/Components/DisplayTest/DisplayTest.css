@@ -1,0 +1,27 @@
+
+.DisplayTest-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+.Time {
+  color: red;
+  font-weight:600;
+  font-size: 30px;
+}
+
+.DisplayTest-Container textarea {
+  width: 100%;
+  height: 120px;
+  margin-top: 20px;
+}
+
+.paragraph{
+  margin-top: 10px;
+}
+  
