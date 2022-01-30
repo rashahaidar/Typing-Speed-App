@@ -11,8 +11,11 @@ export const numberOfCorrectWords=(paragraph,userInput)=>{
         if (c === userInputArr[index]) 
           count++
          }
-      })
+         return c
+      }
+    )
     return count
+
   }
 
 export const totalWordsTyped=(userInput)=>userInput.split(' ').length
