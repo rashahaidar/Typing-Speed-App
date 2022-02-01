@@ -1,18 +1,27 @@
 import { useEffect, useState } from 'react'
-import { netSpeed ,typingSpeed,totalWordsTyped,accuracy,numberOfCorrectWords} from '../../helper/AppHelper.js'
+import { netSpeed ,typingSpeed,accuracy} from '../../helper/AppHelper.js'
 import { Spinner,Button,Card} from "react-bootstrap"
 import { useNavigate } from 'react-router'
 import {buildStyles ,CircularProgressbarWithChildren} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './DisplayResult.css'
 
-const DisplayResult=({timer,userInput,randomParagraph})=>{
+const DisplayResult=({timer,totalEntries,errorEntries,correctEntries,fixedErrors})=>{
 
+    const timeInMinutes=timer/60
     const navigate = useNavigate();
     const [loading,setLoading]=useState(true);
-    const netspeed=netSpeed(numberOfCorrectWords(randomParagraph,userInput),timer/60);
-    const typingspeed=typingSpeed(totalWordsTyped(userInput),timer/60);
-    const accu=accuracy(netspeed,typingspeed);
+
+    const errorRate=((errorEntries-fixedErrors)/5)/timeInMinutes
+
+    //Typing Speed=Raw Speed
+    const typingspeed=typingSpeed(totalEntries,timeInMinutes);
+
+    //Net Speed
+    const netspeed=netSpeed(typingspeed,errorRate);
+    
+    //Accuracy
+    const accu=accuracy(totalEntries,correctEntries);
 
     useEffect(()=>{
       setTimeout(()=>{
@@ -66,7 +75,7 @@ const DisplayResult=({timer,userInput,randomParagraph})=>{
               <Button variant="outline-dark" onClick={handleClick}><strong>Retake Test</strong></Button>
          </div>
       </div>
-      }
+      } 
     </>
     )
 }

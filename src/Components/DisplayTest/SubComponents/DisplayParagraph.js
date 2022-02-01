@@ -1,6 +1,6 @@
-const DisplayParagraph=({randomParagraph,userInput})=>{
+const DisplayParagraph=({randomParagraphArr,userInput})=>{
 
-    const randomParagraphArr=randomParagraph.split('')
+    //const randomParagraphArr=randomParagraph.split('')
     const userInputArr=userInput.split('')
     return(
     <div className="paragraph">
